@@ -4,11 +4,11 @@
 <div class="row mb-3">
     <h3>Log in</h3>
 </div>
-<form class="row g-3" action="{{route("users.register")}}" method="POST">
+<form class="row g-3" action="{{route("users.loginInput")}}" method="POST">
     @csrf
     <div class="col-12">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus>
+        <label for="name" class="form-label">Username</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Username" required autofocus>
     </div>
     <div class="col-12">
         <label for="password" class="form-label">Password</label>

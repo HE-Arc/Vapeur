@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserController extends Controller
 {
     /**
      * Display the login page.
      */
-    public function showLogin()
+    public function login()
     {
         return view("users.login");
     }
@@ -17,9 +19,26 @@ class UserController extends Controller
     /**
      * Display the register page.
      */
-    public function showRegister()
+    public function register()
     {
         return redirect()->route("users.login")->with("success", "User created successfully.");
+    }
+
+    /**
+     * Attemps to login based on the request provided.
+     *
+     * @param   \Illuminate\Http\Request    $request
+     */
+    public function loginInput(Request $request)
+    {
+        $name = $request->name;
+        $password = $request->password;
+
+        $user = User::where(['name' => $name])->first();
+        if (!empty($user) && password_verify($password, $user->password)) {
+            return redirect()->route("users.login")->with("success", "Logged in!");
+        }
+        return redirect()->route("users.login")->with("success", "The username or password are incorrect.");
     }
 
     /**
