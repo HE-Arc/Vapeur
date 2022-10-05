@@ -31,6 +31,11 @@ class UserController extends Controller
      */
     public function loginInput(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required'
+        ]);
+
         $name = $request->name;
         $password = $request->password;
 

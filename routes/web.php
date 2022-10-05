@@ -23,4 +23,4 @@ Route::get('/', function () {
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('login', [UserController::class, 'login'])->name('users.login');
 Route::post('loginInput', [UserController::class, 'loginInput'])->name('users.loginInput');
-Route::post('register', [UserController::class, 'register'])->name('users.register');
+Route::get('register', [UserController::class, 'register'])->name('users.register');

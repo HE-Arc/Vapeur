@@ -17,5 +17,8 @@
     <div class="col-12">
         <button type="submit" class="btn btn-dark">Log in</button>
     </div>
+    <div class="col-12">
+        <a href="{{route("users.register")}}">Don't have an account?</a>
+    </div>
 </form>
 @endsection
