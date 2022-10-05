@@ -36,9 +36,10 @@ class UserController extends Controller
 
         $user = User::where(['name' => $name])->first();
         if (!empty($user) && password_verify($password, $user->password)) {
-            return redirect()->route("users.login")->with("success", "Logged in!");
+            // TODO: change redirect once it's implemented
+            return redirect()->route("users.login");
         }
-        return redirect()->route("users.login")->with("success", "The username or password are incorrect.");
+        return redirect()->route("users.login")->with("error", "The username or password are incorrect.");
     }
 
     /**
