@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::truncate();
         \App\Models\User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'test',
             'email' => 'test@example.com',
             'password' => password_hash('test', PASSWORD_DEFAULT)
         ]);
