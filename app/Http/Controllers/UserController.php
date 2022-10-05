@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function register()
     {
-        return redirect()->route("users.login")->with("success", "User created successfully.");
+        return view("users.register");
     }
 
     /**
@@ -45,6 +45,32 @@ class UserController extends Controller
             return redirect()->route("users.login");
         }
         return redirect()->route("users.login")->with("error", "The username or password are incorrect.");
+    }
+
+    /**
+     * Attempt to register account based on the request provided.
+     *
+     * @param   \Illuminate\Http\Request    $request
+     */
+    public function registerInput(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+        $existingUser = User::where(['name' => $request->name])->first();
+        if (empty($existingUser)) {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = password_hash($request->password, PASSWORD_DEFAULT);
+            $user->save();
+            return redirect()->route("users.login")->with("success", "User created successfully!");
+        }
+
+        return redirect()->route("users.register")->with("error", "Username has already been taken.");
     }
 
     /**
