@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(GameSeeder::class);
         /*\App\Models\User::truncate();
         \App\Models\User::factory()->create([
             'name' => 'test',
