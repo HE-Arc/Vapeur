@@ -41,8 +41,7 @@ class UserController extends Controller
 
         $user = User::where(['name' => $name])->first();
         if (!empty($user) && password_verify($password, $user->password)) {
-            // TODO: change redirect once it's implemented
-            return redirect()->route("users.login");
+            return redirect()->route("games.index");
         }
         return redirect()->route("users.login")->with("error", "The username or password are incorrect.");
     }
