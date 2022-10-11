@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('/', [GameController::class, 'index'])->name('games.index');
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('login', [UserController::class, 'login'])->name('users.login');
 Route::post('loginInput', [UserController::class, 'loginInput'])->name('users.loginInput');
