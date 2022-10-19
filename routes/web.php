@@ -22,3 +22,4 @@ Route::get('login', [UserController::class, 'login'])->name('users.login');
 Route::post('loginInput', [UserController::class, 'loginInput'])->name('users.loginInput');
 Route::get('register', [UserController::class, 'register'])->name('users.register');
 Route::post('registerInput', [UserController::class, 'registerInput'])->name('users.registerInput');
+Route::get('logout', [UserController::class, 'logout'])->name('users.logout');

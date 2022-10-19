@@ -24,6 +24,12 @@ class UserController extends Controller
         return view("users.register");
     }
 
+    public function logout()
+    {
+        session()->forget(['userId', 'username']);
+        return redirect()->route("games.index");
+    }
+
     /**
      * Attemps to login based on the request provided.
      *
@@ -41,6 +47,7 @@ class UserController extends Controller
 
         $user = User::where(['name' => $name])->first();
         if (!empty($user) && password_verify($password, $user->password)) {
+            session(['userId' => $user->id, 'username' => $user->name]);
             return redirect()->route("games.index");
         }
         return redirect()->route("users.login")->with("error", "The username or password are incorrect.");

@@ -22,14 +22,28 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav me-right mb-2 mb-lg-0">
+                @if (empty(session('userId')))
                     <li class="nav-item">
                         <a class="nav-link" href="{{route("users.login")}}">
                             <span class="bi bi-box-arrow-in-right"></span>
                             <span class="d-sm-none">Log in</span>
                         </a>
                     </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            <span class="bi bi-person"></span>
+                            {{ session('username') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route("users.logout")}}">
+                            <span class="bi bi-box-arrow-right"></span>
+                            <span class="d-sm-none">Log out</span>
+                        </a>
+                    </li>
+                @endif
                 </ul>
-
             </div>
         </div>
     </nav>
