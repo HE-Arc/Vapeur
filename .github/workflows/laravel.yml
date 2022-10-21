@@ -54,7 +54,7 @@ jobs:
     - name: Install Envoy
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Build .env file
-      run: echo "DEPLOY_SERVER=${{ secrets.SERVER }}\nDEPLOY_PATH=${{ secrets.PATH} }" >> .env
+      run: echo "DEPLOY_SERVER=${{ secrets.SERVER }}\nDEPLOY_PATH=${{ secrets.PATH }}" >> .env
     - name: Deploy
       run: envoy run deploy
 
