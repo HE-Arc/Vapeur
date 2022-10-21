@@ -34,8 +34,8 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: |
-      php artisan migrate
-      vendor/bin/phpunit
+        php artisan migrate
+        vendor/bin/phpunit
 
   laravel-deploy:
     needs: laravel-tests
