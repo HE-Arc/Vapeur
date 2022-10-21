@@ -13,7 +13,8 @@
 
 @task('git', ['on' => 'web'])
     cd {{ $path }}
-    git pull origin master
+    git checkout main
+    git pull origin main
 @endtask
 
 @task('composer', ['on' => 'web'])

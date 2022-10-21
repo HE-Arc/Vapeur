@@ -32,8 +32,6 @@ jobs:
 
   laravel-deploy:
     needs: laravel-tests
-    branches:
-      - main
     runs-on: ubuntu-latest
 
     steps:
