@@ -1,8 +1,18 @@
-@servers(['web' => $_ENV['SERVER']])
-
 @setup
-    $path = $_ENV['PATH' ];
+    require __DIR__.'/vendor/autoload.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    try {
+        $dotenv->load();
+        $dotenv->required(['DEPLOY_SERVER', 'DEPLOY_PATH'])->notEmpty();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        exit;
+    }
+    $server = $_ENV['DEPLOY_SERVER'];
+    $path = $_ENV['DEPLOY_PATH' ];
 @endsetup
+
+@servers(['web' => $server ])
 
 @story('deploy')
     git
