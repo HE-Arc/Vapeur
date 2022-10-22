@@ -37,28 +37,28 @@ jobs:
         php artisan migrate
         vendor/bin/phpunit
 
-  laravel-deploy:
-    needs: laravel-tests
-    runs-on: ubuntu-latest
+  # laravel-deploy:
+  #   needs: laravel-tests
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-      with:
-        php-version: '8.1'
-        extensions: bcmath, ctype, curl, dom, fileinfo, json, mbstring, openssl, pcre, pdo, tokenizer, xml
-    - uses: actions/checkout@v3
-    - uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        name: id_rsa
-        known_hosts: ${{ secrets.SSH_KNOWN_HOST }}
-    # - name: Install Envoy (composer)
-      # run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Build .env file
-      run: |
-        echo "DEPLOY_SERVER=${{ secrets.SERVER }}" >> .env
-        echo "DEPLOY_PATH=${{ secrets.PATH }}" >> .env
-    # - name: Deploy
-      # run: envoy run deploy
+  #   steps:
+  #   - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+  #     with:
+  #       php-version: '8.1'
+  #       extensions: bcmath, ctype, curl, dom, fileinfo, json, mbstring, openssl, pcre, pdo, tokenizer, xml
+  #   - uses: actions/checkout@v3
+  #   - uses: shimataro/ssh-key-action@v2
+  #     with:
+  #       key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #       name: id_rsa
+  #       known_hosts: ${{ secrets.SSH_KNOWN_HOST }}
+  #   # - name: Install Envoy (composer)
+  #     # run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+  #   - name: Build .env file
+  #     run: |
+  #       echo "DEPLOY_SERVER=${{ secrets.SERVER }}" >> .env
+  #       echo "DEPLOY_PATH=${{ secrets.PATH }}" >> .env
+  #   # - name: Deploy
+  #     # run: envoy run deploy
 
 
