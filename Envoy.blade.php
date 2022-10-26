@@ -9,7 +9,7 @@
         exit;
     }
     $server = $_ENV['DEPLOY_SERVER'];
-    $path = $_ENV['DEPLOY_PATH' ];
+    $deploy_path = $_ENV['DEPLOY_PATH' ];
 @endsetup
 
 @servers(['web' => $server ])
@@ -22,18 +22,18 @@
 @endstory
 
 @task('git', ['on' => 'web'])
-    cd {{ $path }}
+    cd {{ $deploy_path }}
     git checkout main
     git pull origin main
 @endtask
 
 @task('composer', ['on' => 'web'])
-    cd {{ $path }}
+    cd {{ $deploy_path }}
     composer install --no-interaction --no-dev --prefer-dist --optimize-autoloader
 @endtask
 
 @task('artisan', ['on' => 'web'])
-    cd {{ $path }}
+    cd {{ $deploy_path }}
     php artisan migrate --force
 @endtask
 
