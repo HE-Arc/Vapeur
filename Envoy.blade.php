@@ -16,6 +16,7 @@
 
 @story('deploy')
     git
+    file_permissions
     composer
     artisan
     optimize
@@ -23,8 +24,15 @@
 
 @task('git', ['on' => 'web'])
     cd {{ $deploy_path }}
+    git reset --hard HEAD {{-- reset the file permission --}}
     git checkout main
     git pull origin main
+@endtask
+
+@task('file_permissions', ['on' => 'web'])
+    cd {{ $deploy_path }}
+    sudo chgrp -R 770 .
+    sudo chmod -R 775 ./public
 @endtask
 
 @task('composer', ['on' => 'web'])
