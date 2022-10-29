@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function logout()
     {
-        session()->forget(['userId', 'username']);
+        session()->forget(["userId", "username"]);
         return redirect()->route("games.index");
     }
 
@@ -38,19 +38,21 @@ class UserController extends Controller
     public function loginInput(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'password' => 'required'
+            "name" => "required",
+            "password" => "required",
         ]);
 
         $name = $request->name;
         $password = $request->password;
 
-        $user = User::where(['name' => $name])->first();
+        $user = User::where(["name" => $name])->first();
         if (!empty($user) && password_verify($password, $user->password)) {
-            session(['userId' => $user->id, 'username' => $user->name]);
+            session(["userId" => $user->id, "username" => $user->name]);
             return redirect()->route("games.index");
         }
-        return redirect()->route("users.login")->with("error", "The username or password are incorrect.");
+        return redirect()
+            ->route("users.login")
+            ->with("error", "The username or password are incorrect.");
     }
 
     /**
@@ -61,22 +63,29 @@ class UserController extends Controller
     public function registerInput(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
+            "name" => "required",
+            "email" => "required|email|unique:users",
+            "password" => "required",
         ]);
 
-        $existingUser = User::where(['name' => $request->name])->first();
+        $existingUser = User::where(["name" => $request->name])->first();
         if (empty($existingUser)) {
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = password_hash($request->password, PASSWORD_DEFAULT);
+            $user->password = password_hash(
+                $request->password,
+                PASSWORD_DEFAULT
+            );
             $user->save();
-            return redirect()->route("users.login")->with("success", "User created successfully!");
+            return redirect()
+                ->route("users.login")
+                ->with("success", "User created successfully!");
         }
 
-        return redirect()->route("users.register")->with("error", "Username has already been taken.");
+        return redirect()
+            ->route("users.register")
+            ->with("error", "Username has already been taken.");
     }
 
     /**
@@ -107,7 +116,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect()->route("users.login")->with("success", "User created successfully.");
+        return redirect()
+            ->route("users.login")
+            ->with("success", "User created successfully.");
     }
 
     /**
