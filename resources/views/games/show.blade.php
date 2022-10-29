@@ -14,8 +14,11 @@
                         <h5 class="card-subtitle text-muted">{{$game->price}}</h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <!-- TODO: Add the genres -->
-                        <li class="list-group-item"><b>Genre(s):</b> </li>
+                        <li class="list-group-item"><b>Genre(s):</b>
+                        @foreach ($game->genres as $genre)
+                            <span class="badge bg-secondary">{{$genre->name}}</span>
+                        @endforeach
+                        </li>
                         <li class="list-group-item"><b>Publisher(s):</b> {{$game->publisher}}</li>
                         <li class="list-group-item"><b>Developer(s):</b> {{$game->developer}}</li>
                         <li class="list-group-item"><b>Release Date:</b> {{$game->release_date}}</li>

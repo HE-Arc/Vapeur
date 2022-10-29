@@ -16,6 +16,11 @@
                     <h6 class="card-subtitle mb-2 text-muted">${{$game->price}}</h6>
                     <p class="card-text">{{$game->description}}</p>
                 </div>
+                <div class="card-footer">
+                    @foreach ($game->genres as $genre)
+                        <span class="badge bg-secondary">{{$genre->name}}</span>
+                    @endforeach
+                </div>
             </div>
         </div>
     @endforeach
