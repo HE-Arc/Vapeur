@@ -57,6 +57,6 @@ jobs:
     - name: Build .env file
       run: printf "DEPLOY_SERVER=${{ secrets.SERVER }}\nDEPLOY_PATH=${{ secrets.DIRECTORY }}" > .env
     - name: Deploy
-      run: php vendor/bin/envoy run deploy
+      run: php vendor/bin/envoy run deploy --quiet
 
 

@@ -24,14 +24,14 @@
 
 @task('git', ['on' => 'web'])
     cd {{ $deploy_path }}
-    git reset --hard HEAD {{-- reset the file permission --}}
+    git reset --hard HEAD
     git checkout main
     git pull origin main
 @endtask
 
 @task('file_permissions', ['on' => 'web'])
     cd {{ $deploy_path }}
-    sudo chgrp -R 770 .
+    sudo chmod -R 770 .
     sudo chmod -R 775 ./public
 @endtask
 
