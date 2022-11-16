@@ -42,6 +42,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('favoris.index') }}">Favoris</a>
+                            </li>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.logout') }}">
                                 <span class="bi bi-box-arrow-right"></span>
                                 <span class="d-sm-none">Log out</span>

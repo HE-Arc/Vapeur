@@ -14,4 +14,9 @@ class Game extends Model
     {
         return $this->belongsToMany(Genre::class);
     }
+
+    public function fav()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

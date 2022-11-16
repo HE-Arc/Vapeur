@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function favoris()
+    {
+        return $this->belongsToMany(Game::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -8,7 +8,7 @@
                 <h3>About</h3>
             </div>
             <div class="row g-3">
-                <p>We are Vapor, we've been selling the latest and greatest games since 1995.
+                <p>We are Vapor, we've been selling the latest and greatest games since 1995.</p>
             </div>
         </div>
     </div>
