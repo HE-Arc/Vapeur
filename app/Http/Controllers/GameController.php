@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Game;
+use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
@@ -14,12 +14,13 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::with("genres")
+        $games = Game::with('genres')
             ->latest()
             ->paginate(12);
-        return view("games.index", compact("games"))->with(
-            "i",
-            (request()->input("page", 1) - 1) * 12
+
+        return view('games.index', compact('games'))->with(
+            'i',
+            (request()->input('page', 1) - 1) * 12
         );
     }
 
@@ -36,19 +37,22 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $game = Game::with("genres")->findOrFail($id);
-        return view("games.show", ["game" => $game]);
+        $game = Game::with('genres')->findOrFail($id);
+
+        return view('games.show', ['game' => $game]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -59,8 +63,9 @@ class GameController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -71,7 +76,8 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
