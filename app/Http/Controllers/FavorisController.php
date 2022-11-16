@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\User;
 
 class FavorisController extends Controller
 {
@@ -14,7 +15,8 @@ class FavorisController extends Controller
      */
     public function index()
     {
-        $games = Game::with("genres")->latest()->paginate(12);
+        //$games = Game::with("genres")->latest()->paginate(12);
+        $games = User::with("favoris")->findOrFail(session("userId"));
 
         return view("favoris.index", compact("games"))
             ->with("i",(request()->input("page", 1) - 1) * 12);
