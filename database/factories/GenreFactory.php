@@ -17,8 +17,8 @@ class GenreFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'genre_id' => NULL
+            'name'     => fake()->name(),
+            'genre_id' => null,
         ];
     }
 }
