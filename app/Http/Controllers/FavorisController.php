@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class FavorisController extends Controller
 {
@@ -16,10 +16,10 @@ class FavorisController extends Controller
     public function index()
     {
         //$games = Game::with("genres")->latest()->paginate(12);
-        $games = User::with("favoris")->findOrFail(session("userId"));
+        $games = User::with('favoris')->findOrFail(session('userId'));
 
-        return view("favoris.index", compact("games"))
-            ->with("i",(request()->input("page", 1) - 1) * 12);
+        return view('favoris.index', compact('games'))
+            ->with('i', (request()->input('page', 1) - 1) * 12);
     }
 
     /**
@@ -35,7 +35,8 @@ class FavorisController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,7 +47,8 @@ class FavorisController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -57,7 +59,8 @@ class FavorisController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,8 +71,9 @@ class FavorisController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -80,7 +84,8 @@ class FavorisController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

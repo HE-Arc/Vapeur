@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class() extends Migration {
     /**
      * Run the migrations.
      *
@@ -12,13 +12,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table("genres", function (Blueprint $table) {
+        Schema::table('genres', function (Blueprint $table) {
             $table
-                ->foreignId("genre_id")
+                ->foreignId('genre_id')
                 ->nullable()
                 ->constrained()
-                ->onUpdate("cascade")
-                ->onDelete("set null");
+                ->onUpdate('cascade')
+                ->onDelete('set null');
         });
     }
 
@@ -29,9 +29,9 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table("genres", function (Blueprint $table) {
-            $table->dropForeign(["genre_id"]);
-            $table->dropColumn("genre_id");
+        Schema::table('genres', function (Blueprint $table) {
+            $table->dropForeign(['genre_id']);
+            $table->dropColumn('genre_id');
         });
     }
 };

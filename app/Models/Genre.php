@@ -16,11 +16,11 @@ class Genre extends Model
 
     public function children()
     {
-        return $this->hasMany(Genre::class, "genre_id");
+        return $this->hasMany(Genre::class, 'genre_id');
     }
 
     public function parent()
     {
-        return $this->belongsTo(Genre::class, "genre_id");
+        return $this->belongsTo(Genre::class, 'genre_id');
     }
 }
