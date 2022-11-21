@@ -17,14 +17,14 @@ class GameFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'description' => fake()->name(),
-            'price' => fake()->randomFloat(2, 1, 80),
-            'image_path' => '',
-            'publisher' => fake()->name(),
-            'developer' => fake()->name(),
-            'age_rating' => '3',
-            'release_date' => now()
+            'name'         => fake()->name(),
+            'description'  => fake()->name(),
+            'price'        => fake()->randomFloat(2, 1, 80),
+            'image_path'   => '',
+            'publisher'    => fake()->name(),
+            'developer'    => fake()->name(),
+            'age_rating'   => '3',
+            'release_date' => now(),
         ];
     }
 }
