@@ -48,6 +48,6 @@
 @task('optimize', ['on' => 'web'])
     cd {{ $deploy_path }}
     php artisan config:cache
-    php artisan route:cache {{-- not yet necessary as the number of route is small --}}
+    php artisan route:cache
     php artisan view:cache
 @endtask
