@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Genre;
+use Illuminate\Support\Facades\File;
 
 class GameController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +34,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        $genres = Genre::where("genre_id", null)->with("children")->get();
+        return view("games.create", compact("genres"));
     }
 
     /**
@@ -53,7 +58,47 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $game = Game::with("genres")->findOrFail($id);
+        $genres = Genre::where("genre_id", null)->with("children")->get();
+        return view("games.edit", compact("game", "genres"));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            "name" => "required",
+            "price" => "required|gt:0",
+            "publisher" => "required",
+            "developer" => "required",
+            "release_date" => "required",
+            "age_rating" => "required",
+            "description" => "required",
+            "image" => "required|image|max:2048",
+        ]);
+
+        // Store the image
+        $path = hash('sha1', time() . $request->image->getClientOriginalName()) . "." . $request->image->extension();
+        $request->image->move(public_path("images/uploads"), $path);
+
+        // Create the game
+        $game = new Game();
+        $game->image_path = 'uploads/' . $path;
+
+        $game->fill($request->all());
+        $game->save();
+
+        // Add the genres to the game
+        $game->genres()->sync($request->genres);
+
+
+        return redirect()
+            ->route("games.index")
+            ->with("success", "Game created successfully.");
     }
 
     /**
@@ -65,7 +110,40 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "name" => "required",
+            "price" => "required|gt:0",
+            "publisher" => "required",
+            "developer" => "required",
+            "release_date" => "required",
+            "age_rating" => "required",
+            "description" => "required",
+            "image" => "image|max:2048",
+        ]);
+
+        $game = Game::findOrFail($id);
+
+        // Store the image whhen new image is uploaded
+        if ($request->image) {
+            $old_image = public_path("images/" . $game->image_path);
+            if (file_exists($old_image)) {
+                File::delete($old_image);
+            }
+            $path = hash('sha1', time() . $request->image->getClientOriginalName()) . "." . $request->image->extension();
+            $request->image->move(public_path("images/uploads"), $path);
+            $game->image_path = 'uploads/' . $path;
+        }
+
+        $game->fill($request->all());
+        $game->save();
+
+        // Sync the genres to the game
+        $game->genres()->sync($request->genres);
+
+
+        return redirect()
+            ->route("games.index")
+            ->with("success", "Game created successfully.");
     }
 
     /**
@@ -76,6 +154,14 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::findOrFail($id);
+        $image_path = public_path("images/" . $game->image_path);
+        if (file_exists($image_path)) {
+            File::delete($image_path);
+        }
+        $game->delete();
+        return redirect()
+            ->route("games.index")
+            ->with("success", "Game deleted successfully");
     }
 }

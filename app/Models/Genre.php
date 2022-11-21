@@ -13,4 +13,14 @@ class Genre extends Model
     {
         return $this->belongsToMany(Game::class);
     }
+
+    public function children()
+    {
+        return $this->hasMany(Genre::class, "genre_id");
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Genre::class, "genre_id");
+    }
 }

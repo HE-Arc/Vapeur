@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GameController::class, 'index'])->name('games.index');
+Route::get('/', [GameController::class, 'index'])->name('home');
 #Route::get('game', [GameController::class, 'show'])->name('games.show');
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('login', [UserController::class, 'login'])->name('users.login');

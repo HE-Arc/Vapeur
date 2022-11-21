@@ -29,6 +29,16 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <a href="{{route("games.index")}}" class="btn btn-dark">Back</a>
+                @if (!empty(session('userId')))
+                    <a href="{{route("games.edit", $game->id)}}" class="btn btn-warning">Edit</a>
+                    <form action="{{route("games.destroy", $game->id)}}" method="POST" class="d-inline">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                @endif
+            </div>
         </div>
     </div>
 </div>

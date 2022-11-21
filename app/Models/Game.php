@@ -9,6 +9,15 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'price',
+        'publisher',
+        'developer',
+        'release_date',
+        'age_rating',
+        'description',
+    ];
 
     public function genres()
     {
