@@ -38,3 +38,7 @@ function update_image_validation() {
         preview.src = URL.createObjectURL(file.files[0]);
     }
 }
+
+function confirm_delete() {
+    return confirm('Are you sure?');
+}

@@ -36,10 +36,11 @@
                     <form action="{{route("games.destroy", $game->id)}}" method="POST" class="d-inline">
                         @csrf
                         @method("DELETE")
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm_delete()">Delete</button>
                 @endif
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{ asset('js/games.js') }}">
 @endsection
