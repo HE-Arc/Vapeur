@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{route("games.index")}}" class="btn btn-dark">Back</a>
+                <a href="{{route("games.index")}}" class="btn btn-secondary">Back</a>
                 @if (!empty(session('userId')))
                     <a href="{{route("games.edit", $game->id)}}" class="btn btn-warning">Edit</a>
                     <form action="{{route("games.destroy", $game->id)}}" method="POST" class="d-inline">

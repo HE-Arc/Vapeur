@@ -4,7 +4,7 @@
 @section('content')
     <h1>Edit Game</h1>
     <div class="col-12">
-        <a class="btn btn-dark" href="{{ route('games.index') }}">Back</a>
+        <a class="btn btn-secondary" href="{{ route('games.index') }}">Back</a>
     </div>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -73,7 +73,7 @@
         <div class="form-text">Image size < 2MB</div>
                 <img id="preview" src="{{ asset("images/{$game->image_path}") }}" alt="Image Preview"
                     class="img-thumbnail">
-                <button type="submit" class="btn btn-dark">Edit</button>
+                <button type="submit" class="btn btn-secondary">Edit</button>
     </form>
     <script src="{{ asset('js/games.js') }}"></script>
 

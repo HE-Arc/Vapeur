@@ -4,7 +4,7 @@
 @section('content')
     <h1>Add Game</h1>
     <div class="col-12">
-        <a class="btn btn-dark" href="{{ route('games.index') }}">Back</a>
+        <a class="btn btn-secondary" href="{{ route('games.index') }}">Back</a>
     </div>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -61,7 +61,7 @@
         <input type="file" onchange="new_image_validation()" name="image" id="image" class="form-control" accept="image/*">
         <div class="form-text">Image size < 2MB</div>
         <img id="preview" src="#" alt="Image Preview" class="img-thumbnail" style="display: none;">
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <button type="submit" class="btn btn-secondary">Submit</button>
     </form>
     <script src="{{ asset('js/games.js') }}"></script>
 

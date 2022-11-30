@@ -12,8 +12,9 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-sm navbar-dark" style="background-color: #515559;">
         <div class="container-fluid">
+            <img src="{{asset("images/logo.jpg")}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
             <a class="navbar-brand" href="{{ route('games.index') }}">Vapeur</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
