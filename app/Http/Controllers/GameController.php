@@ -18,7 +18,7 @@ class GameController extends Controller
     {
         $games = Game::with('genres')
             ->latest()
-            ->paginate(12);
+            ->paginate(9);
 
         return view('games.index', compact('games'))->with(
             'i',

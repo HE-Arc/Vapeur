@@ -29,7 +29,10 @@
 			</div>
 		</div>
 	@endforeach
-    {!! $games->links() !!}
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="p-2">{!! $games->links() !!}</div>
 </div>
 
 @endsection
