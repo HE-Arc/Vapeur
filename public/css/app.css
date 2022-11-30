@@ -1,0 +1,10 @@
+#preview {
+    width: 460px;
+    height: 215px;
+}
+
+.scroll-menu {
+    overflow-x: auto;
+    white-space: nowrap;
+    max-height: 25em;
+}

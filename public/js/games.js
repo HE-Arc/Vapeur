@@ -4,8 +4,7 @@
  */
 
 function upload_check(file) {
-    var max_size = 1024 * 1024 * 2; // 2MB
-
+    var max_size = 1024 * 200; // 200kB
     return file.files[0].size > max_size;
 }
 
@@ -14,7 +13,7 @@ function new_image_validation() {
     var preview = document.getElementById("preview");
 
     if (upload_check(file)) {
-        alert("File size is too big!");
+        alert("Image don't meet the requirements!");
         preview.src = "";
         preview.style.display = "none";
         file.value = "";
@@ -31,7 +30,7 @@ function update_image_validation() {
     var original_image = document.getElementById("image").value;
 
     if (upload_check(file)) {
-        alert("File size is too big!");
+        alert("Image don't meet the requirements!");
         preview.src = "images/" + original_image;
         file.value = "";
     } else {

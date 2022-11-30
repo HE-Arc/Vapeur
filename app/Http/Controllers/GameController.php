@@ -84,7 +84,7 @@ class GameController extends Controller
             'release_date' => 'required',
             'age_rating'   => 'required',
             'description'  => 'required',
-            'image'        => 'required|image|max:2048',
+            'image'        => 'required|image|max:200|dimensions:width=460,height=215',
         ]);
 
         // Store the image
@@ -124,7 +124,7 @@ class GameController extends Controller
             'release_date' => 'required',
             'age_rating'   => 'required',
             'description'  => 'required',
-            'image'        => 'image|max:2048',
+            'image'        => 'image|max:200|dimensions:width=460,height=215',
         ]);
 
         $game = Game::findOrFail($id);
