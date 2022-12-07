@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FavorisController extends Controller
 {
@@ -15,7 +16,7 @@ class FavorisController extends Controller
      */
     public function index()
     {
-        $favoris = User::with('favoris')->findOrFail(session('userId'))->favoris;
+        $favoris = User::with('favoris')->findOrFail(Auth::id())->favoris;
 
         return view('favoris.index', compact('favoris'))
             ->with('i', (request()->input('page', 1) - 1) * 12);
@@ -78,7 +79,7 @@ class FavorisController extends Controller
     public function update(Request $request, $id)
     {
         $game = Game::findOrFail($id);
-        $game->fav()->toggle(session('userId'));
+        $game->fav()->toggle(Auth::id());
 
         return redirect('games');
     }
@@ -93,7 +94,7 @@ class FavorisController extends Controller
     public function destroy($id)
     {
         $game = Game::findOrFail($id);
-        $game->fav()->detach(session('userId'));
+        $game->fav()->detach(Auth::id());
 
         return redirect('favoris');
     }
