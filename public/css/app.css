@@ -20,7 +20,7 @@
 .bi-star-fill {
     color: #ebc707;
 }
-.favourite-icon:hover {
+.bi-star:hover {
     filter: brightness(105%);
 }
 button:has(.favourite-icon) {

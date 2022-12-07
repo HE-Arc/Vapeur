@@ -15,10 +15,9 @@ class FavorisController extends Controller
      */
     public function index()
     {
-        //$games = Game::with("genres")->latest()->paginate(12);
-        $games = User::with('favoris')->findOrFail(session('userId'));
+        $favoris = User::with('favoris')->findOrFail(session('userId'))->favoris;
 
-        return view('favoris.index', compact('games'))
+        return view('favoris.index', compact('favoris'))
             ->with('i', (request()->input('page', 1) - 1) * 12);
     }
 
@@ -78,7 +77,10 @@ class FavorisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $game = Game::findOrFail($id);
+        $game->fav()->toggle(session('userId'));
+
+        return redirect("games");
     }
 
     /**
@@ -90,6 +92,9 @@ class FavorisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::findOrFail($id);
+        $game->fav()->detach(session('userId'));
+
+        return redirect("favoris");
     }
 }

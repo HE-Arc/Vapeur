@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($games->favoris as $game)
+            @foreach ($favoris as $game)
             <tr>
                 <td>
                     @foreach ($game->genres as $genre)
@@ -22,7 +22,7 @@
                 </td>
                 <td>{{$game->name}}</td>
                 <td>
-                <form action="{{ route('favoris.destroy', $games->favoris->detach($game->id)) }}" method="POST">
+                <form action="{{ route('favoris.destroy', $game->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Supprimer des favoris</button>

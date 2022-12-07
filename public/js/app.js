@@ -1,17 +1,7 @@
 let icons = document.querySelectorAll('i.favourite-icon');
 for (i in icons) {
-    icons[i].onmouseover = function() {
-        if (!this.classList.contains('is-favourited')) {
-            this.classList.add('bi-star-fill');
-            this.classList.remove('bi-star');
-        }
-    };
-    icons[i].onmouseout = function() {
-        if (!this.classList.contains('is-favourited')) {
-            this.classList.add('bi-star');
-            this.classList.remove('bi-star-fill');
-        }
-    };
+    icons[i].onmouseover = createIconSwapFun(icons[i], 'bi-star-fill', 'bi-star');
+    icons[i].onmouseout = createIconSwapFun(icons[i], 'bi-star', 'bi-star-fill');
     /*
     icons[i].onclick = function() {
         if (this.classList.contains('is-favourited')) {
@@ -24,6 +14,15 @@ for (i in icons) {
         fetchFavourite(this.nextElementSibling.textContent);
     };
     */
+}
+
+function createIconSwapFun(icon, addedClass, removedClass) {
+    return function() {
+        if (!icon.classList.contains('is-favourited')) {
+            icon.classList.add(addedClass);
+            icon.classList.remove(removedClass);
+        }
+    }
 }
 
 /*

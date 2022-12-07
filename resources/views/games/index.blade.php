@@ -22,10 +22,12 @@
                                 <h6 class="text-muted">${{$game->price}}</h6>
                             </div>
                             @if (!empty(session('userId')))
-                                <form class="col text-end" action="{{route("games.update", $game->id)}}" method="POST">
+                                <form class="col text-end" action="{{route("favoris.update", $game->id)}}" method="POST">
                                     @csrf
                                     @method("PUT")
-                                    <button type="submit"><i class="bi bi-star favourite-icon"></i></button>
+                                    <input type="hidden" name="id" value="{{$game->id}}">
+
+                                    <button type="submit"><i class="bi {{($game->fav()->exists() ? "bi-star-fill is-favourited" : "bi-star")}} favourite-icon"></i></button>
                                 </form>
                             @endif
                         </div>
