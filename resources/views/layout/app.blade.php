@@ -34,7 +34,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.login') }}">
                                 <span class="bi bi-box-arrow-in-right"></span>
-                                <span class="d-sm-none">Log in</span>
+                                Login
                             </a>
                         </li>
                     @else
@@ -52,7 +52,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.logout') }}">
                                 <span class="bi bi-box-arrow-right"></span>
-                                <span class="d-sm-none">Log out</span>
+                                Logout
                             </a>
                         </li>
                     @endif
