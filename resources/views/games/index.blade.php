@@ -21,9 +21,13 @@
                             <div class="col">
                                 <h6 class="text-muted">${{$game->price}}</h6>
                             </div>
-                            <div class="col text-end">
-                                <h6 class="text-muted"><i class="bi bi-star"></i></h6>
-                            </div>
+                            @if (!empty(session('userId')))
+                                <form class="col text-end" action="{{route("games.update", $game->id)}}" method="POST">
+                                    @csrf
+                                    @method("PUT")
+                                    <button type="submit"><i class="bi bi-star favourite-icon"></i></button>
+                                </form>
+                            @endif
                         </div>
                     </div>
 					<p class="card-text">{{$game->description}}</p>

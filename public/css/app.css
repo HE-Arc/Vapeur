@@ -8,3 +8,22 @@
     white-space: nowrap;
     max-height: 25em;
 }
+.card-title > a {
+    text-decoration: none;
+    color: rgb(64, 64, 64);
+}
+.card-title > a:hover {
+    color: rgb(128, 128, 128);
+}
+
+/* Game favourite icon */
+.bi-star-fill {
+    color: #ebc707;
+}
+.favourite-icon:hover {
+    filter: brightness(105%);
+}
+button:has(.favourite-icon) {
+    background-color: transparent;
+    border: none;
+}
