@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -19,8 +20,9 @@ class GameController extends Controller
         $games = Game::with('genres')
             ->latest()
             ->paginate(9);
+        $favoris = User::findOrFail(session('userId'))->favoris;
 
-        return view('games.index', compact('games'))->with(
+        return view('games.index', compact('games', 'favoris'))->with(
             'i',
             (request()->input('page', 1) - 1) * 12
         );
