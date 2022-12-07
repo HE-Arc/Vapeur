@@ -23,7 +23,7 @@
 .bi-star:hover {
     filter: brightness(105%);
 }
-button:has(.favourite-icon) {
+.favourite-icon {
     background-color: transparent;
     border: none;
 }

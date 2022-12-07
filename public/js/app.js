@@ -1,4 +1,4 @@
-let icons = document.querySelectorAll('i.favourite-icon');
+let icons = document.querySelectorAll('button.favourite-icon > i');
 for (i in icons) {
     icons[i].onmouseover = createIconSwapFun(icons[i], 'bi-star-fill', 'bi-star');
     icons[i].onmouseout = createIconSwapFun(icons[i], 'bi-star', 'bi-star-fill');

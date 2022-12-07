@@ -27,7 +27,7 @@
                                     @method("PUT")
                                     <input type="hidden" name="id" value="{{$game->id}}">
 
-                                    <button type="submit"><i class="bi {{($game->fav()->exists() ? "bi-star-fill is-favourited" : "bi-star")}} favourite-icon"></i></button>
+                                    <button type="submit" class="favourite-icon"><i class="bi {{($game->fav()->exists() ? "bi-star-fill is-favourited" : "bi-star")}}"></i></button>
                                 </form>
                             @endif
                         </div>
