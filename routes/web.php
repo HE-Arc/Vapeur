@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,5 @@ Route::post('registerInput', [UserController::class, 'registerInput'])->name('us
 Route::get('logout', [UserController::class, 'logout'])->name('users.logout');
 
 Route::resource('games', GameController::class);
-
+Route::resource('genres', GenreController::class);
 Route::resource('favoris', FavorisController::class);

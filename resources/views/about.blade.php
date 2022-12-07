@@ -8,7 +8,7 @@
                 <h3>About us</h3>
             </div>
             <div class="row g-3">
-                <p>We are Vapor, we've been selling the latest and greatest games since 1995.</p>
+                <p>We are Vapor, we've been helping you to organise your collection of the latest and greatest games since 1995.</p>
                 <div class="text-center">
                     <img src="{{asset("images/logo.jpg")}}" class="rounded" alt="">
                 </div>
