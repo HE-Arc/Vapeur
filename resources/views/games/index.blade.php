@@ -13,10 +13,19 @@
             <a href="{{route("games.show", $game->id)}}">
 			<img class="card-img-top" src="{{asset("images/{$game->image_path}")}}" alt="{{$game->name}}">
 				<div class="card-body">
-					<h5 class="card-title text-truncate" data-bs-toggle=
+					<h5 class="card-title text-truncate" data-bs-toggle="tooltip" data-bs-placement="top" title="{{$game->name}}">
 						<a href="{{route("games.show", $game->id)}}">{{$game->name}}</a>
 					</h5>
-					<h6 class="card-subtitle mb-2 text-muted">${{$game->price}}</h6>
+					<div class="container-fluid card-subtitle mb-2 ps-0 pe-0">
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-muted">${{$game->price}}</h6>
+                            </div>
+                            <div class="col text-end">
+                                <h6 class="text-muted"><i class="bi bi-star"></i></h6>
+                            </div>
+                        </div>
+                    </div>
 					<p class="card-text">{{$game->description}}</p>
 				</div>
 				<div class="card-footer">

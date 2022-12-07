@@ -11,7 +11,7 @@
                 <div class="col-sm-12 col-md-7">
                     <div class="card-body">
                         <h5 class="card-title">{{$game->name}}</h5>
-                        <h5 class="card-subtitle text-muted">{{$game->price}}</h5>
+                        <h5 class="card-subtitle text-muted">${{$game->price}}</h5>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Genre(s):</b>
