@@ -20,7 +20,12 @@ class GameController extends Controller
         $games = Game::with('genres')
             ->latest()
             ->paginate(9);
-        $favoris = User::findOrFail(session('userId'))->favoris;
+
+        $favoris = [];
+        $user = User::find(session('userId'));
+        if (!empty($user)) {
+            $favoris = $user->favoris;
+        }
 
         return view('games.index', compact('games', 'favoris'))->with(
             'i',

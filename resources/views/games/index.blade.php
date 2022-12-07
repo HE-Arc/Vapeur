@@ -3,7 +3,7 @@
 @section("content")
 
 @if (!empty(session('userId')))
-	<a class="btn btn-secondary" href="{{ route('games.create') }}">Add game</a>
+    <a class="btn btn-secondary" href="{{ route('games.create') }}">Add game</a>
 @endif
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
