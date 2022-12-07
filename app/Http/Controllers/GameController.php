@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class GameController extends Controller
@@ -22,7 +23,7 @@ class GameController extends Controller
             ->paginate(9);
 
         $favoris = [];
-        $user = User::find(session('userId'));
+        $user = Auth::user();
         if (!empty($user)) {
             $favoris = $user->favoris;
         }

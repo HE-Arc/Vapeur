@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,11 +25,13 @@ class UserController extends Controller
         return view('users.register');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->forget(['userId', 'username']);
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return redirect()->route('games.index');
+        return redirect('/');
     }
 
     /**
@@ -37,18 +41,13 @@ class UserController extends Controller
      */
     public function loginInput(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'name'     => 'required',
             'password' => 'required',
         ]);
 
-        $name = $request->name;
-        $password = $request->password;
-
-        $user = User::where(['name' => $name])->first();
-        if (!empty($user) && password_verify($password, $user->password)) {
-            session(['userId' => $user->id, 'username' => $user->name]);
-
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
             return redirect()->route('games.index');
         }
 
@@ -75,10 +74,7 @@ class UserController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = password_hash(
-                $request->password,
-                PASSWORD_DEFAULT
-            );
+            $user->password = Hash::make($request->password);
             $user->save();
 
             return redirect()

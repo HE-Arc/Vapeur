@@ -30,7 +30,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav me-right mb-2 mb-lg-0">
-                    @if (empty(session('userId')))
+                    @if (!Auth::check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.login') }}">
                                 <span class="bi bi-box-arrow-in-right"></span>
@@ -41,7 +41,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="">
                                 <span class="bi bi-person"></span>
-                                {{ session('username') }}
+                                {{ Auth::user()->name }}
                             </a>
                         </li>
                         <li class="nav-item">

@@ -2,7 +2,7 @@
 
 @section("content")
 
-@if (!empty(session('userId')))
+@if (Auth::check())
     <a class="btn btn-secondary" href="{{ route('games.create') }}">Add game</a>
 @endif
 
@@ -21,7 +21,7 @@
                             <div class="col">
                                 <h6 class="text-muted">${{$game->price}}</h6>
                             </div>
-                            @if (!empty(session('userId')))
+                            @if (Auth::check())
                                 <form class="col text-end" action="{{route("favoris.update", $game->id)}}" method="POST">
                                     @csrf
                                     @method("PUT")
