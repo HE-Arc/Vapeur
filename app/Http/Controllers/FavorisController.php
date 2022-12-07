@@ -80,7 +80,7 @@ class FavorisController extends Controller
         $game = Game::findOrFail($id);
         $game->fav()->toggle(session('userId'));
 
-        return redirect("games");
+        return redirect('games');
     }
 
     /**
@@ -95,6 +95,6 @@ class FavorisController extends Controller
         $game = Game::findOrFail($id);
         $game->fav()->detach(session('userId'));
 
-        return redirect("favoris");
+        return redirect('favoris');
     }
 }
