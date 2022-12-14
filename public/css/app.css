@@ -8,11 +8,13 @@
     white-space: nowrap;
     max-height: 25em;
 }
-.card-title > a {
+.card-title > a,
+tbody a {
     text-decoration: none;
     color: rgb(64, 64, 64);
 }
-.card-title > a:hover {
+.card-title > a:hover,
+tbody a:hover {
     color: rgb(128, 128, 128);
 }
 

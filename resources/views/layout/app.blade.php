@@ -48,7 +48,7 @@
                         </li>
                         <li class="nav-item">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('favoris.index') }}">Favoris</a>
+                                <a class="nav-link" href="{{ route('favoris.index') }}">Favourites</a>
                             </li>
                         </li>
                         <li class="nav-item">
