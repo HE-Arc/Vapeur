@@ -2,9 +2,9 @@
 
 @section("content")
 
-@if (Auth::check())
+@auth
     <a class="btn btn-secondary" href="{{ route('games.create') }}">Add game</a>
-@endif
+@endauth
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
 	@foreach ($games as $game)
@@ -21,7 +21,7 @@
                             <div class="col">
                                 <h6 class="text-muted">${{$game->price}}</h6>
                             </div>
-                            @if (Auth::check())
+                            @auth
                                 <form class="col text-end" action="{{route("favoris.update", $game->id)}}" method="POST">
                                     @csrf
                                     @method("PUT")
@@ -29,7 +29,7 @@
 
                                     <button type="submit" class="favourite-icon"><i class="bi {{($favoris->contains($game) ? "bi-star-fill is-favourited" : "bi-star")}}"></i></button>
                                 </form>
-                            @endif
+                            @endauth
                         </div>
                     </div>
 					<p class="card-text">{{$game->description}}</p>
@@ -37,7 +37,7 @@
 				<div class="card-footer">
 					<small class="text-muted">
 						@foreach ($game->genres as $genre)
-							<span class="badge bg-secondary">{{$genre->name}}</span>
+							<a href="{{ route("genres.show", $genre->id)}}"><span class="badge bg-secondary">{{$genre->name}}</span></a>
 						@endforeach
 					</small>
 				</div>
