@@ -14,7 +14,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::with('children')->where('genre_id', null)->get();
+        $genres = Genre::with('children', 'games')->where('genre_id', null)->get();
 
         return view('genres.index', compact('genres'));
     }

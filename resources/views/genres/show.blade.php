@@ -23,7 +23,7 @@
                     <div class="card-footer">
                         <small class="text-muted">
                             @foreach ($game->genres as $genre)
-                                <span class="badge bg-secondary">{{$genre->name}}</span>
+                                <a href="{{route("genres.show", $genre->id)}}"><span class="badge bg-secondary">{{$genre->name}}</span></a>
                             @endforeach
                         </small>
                     </div>
