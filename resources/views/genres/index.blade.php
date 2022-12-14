@@ -20,7 +20,7 @@
                         <ul class="card-text">
                             @foreach ($genre->children as $child)
                                 <li>
-                                    <a href="{{ route('genres.show', $child->id) }}">{{ $child->name }} ({{ count($child->games) }})</a>
+                                    <a href="{{ route('genres.show', $child->id) }}" class="link-dark">{{ $child->name }} ({{ count($child->games) }})</a>
                                 </li>
                             @endforeach
                     </div>
