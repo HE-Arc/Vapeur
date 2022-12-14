@@ -16,7 +16,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Genre(s):</b>
                         @foreach ($game->genres as $genre)
-                            <span class="badge bg-secondary">{{$genre->name}}</span>
+                            <a href="{{ route("genres.show", $genre->id)}}"><span class="badge bg-secondary">{{$genre->name}}</span></a>
                         @endforeach
                         </li>
                         <li class="list-group-item"><b>Publisher(s):</b> {{$game->publisher}}</li>
@@ -31,13 +31,13 @@
             </div>
             <div class="card-footer">
                 <a href="{{route("games.index")}}" class="btn btn-secondary">Back</a>
-                @if (Auth::check())
+                @auth
                     <a href="{{route("games.edit", $game->id)}}" class="btn btn-warning">Edit</a>
                     <form action="{{route("games.destroy", $game->id)}}" method="POST" class="d-inline">
                         @csrf
                         @method("DELETE")
                         <button type="submit" class="btn btn-danger" onclick="return confirm_delete()">Delete</button>
-                @endif
+                @endauth
             </div>
         </div>
     </div>
